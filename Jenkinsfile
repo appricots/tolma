@@ -31,6 +31,8 @@ pipeline {
            container('maven') {
              sh "make preview"
              sh "jx preview --app $APP_NAME --dir ../.."
+             sh 'export JX_URL=$(jx get preview --current)'
+             sh "mvn -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=$JX_URL verify"
            }
           }
         }
