@@ -35,6 +35,6 @@ public class SeleniumTolmaIT {
             webDriver.get(baseUrl);
             WebElement working = webDriver.findElement(By.id("working"));
 
-            Assert.assertThat(working.getText(), is(equalTo("Barev ape. THis will fail")));
+            Assert.assertThat(working.getText(), is(equalTo("Barev ape")));
         }
     }
