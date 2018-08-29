@@ -33,7 +33,7 @@ pipeline {
              sh "jx preview --app $APP_NAME --dir ../.."
                 // sh 'export JX_URL=$(jx get preview --current)'  (no workie)
                 // sh "echo '\n\n\n===============\n\nRunning Selenium on $JX_URL\n\n\n'"
-                sh "mvn verify -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=$(jx get preview --current) -P selenium-tests-only"
+                sh "mvn verify -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=\$(jx get preview --current) -P selenium-tests-only"
                 sh "echo 'Done running selenium'"
            }
           }
