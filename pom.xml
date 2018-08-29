@@ -22,7 +22,27 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <skip.selenium.tests>true</skip.selenium.tests>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>selenium-tests-only</id>
+            <properties>
+                <build.profile.id>selenium-tests-only</build.profile.id>
+                <!--<skip.integration.tests>true</skip.integration.tests>-->
+                <skip.selenium.tests>false</skip.selenium.tests>
+            </properties>
+        </profile>
+        <!--<profile>-->
+        <!--<id>integration-tests-only</id>-->
+        <!--<properties>-->
+        <!--<build.profile.id>integration-test-only</build.profile.id>-->
+        <!--<skip.integration.tests>false</skip.integration.tests>-->
+        <!--<skip.selenium.tests>true</skip.selenium.tests>-->
+        <!--</properties>-->
+        <!--</profile>-->
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -82,7 +102,7 @@
                     <!--</dependency>-->
                 <!--</dependencies>-->
                 <configuration>
-                    <!--<skipTests>${skip.selenium.tests}</skipTests>-->
+                    <skipTests>${skip.selenium.tests}</skipTests>
                     <parallel>classesAndMethods</parallel>
                     <threadCount>24</threadCount>
                     <!--<systemProperties>-->
