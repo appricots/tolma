@@ -36,7 +36,7 @@ pipeline {
           }
 
           container('maven') {
-            sh "echo '\n\n\n===============\n\nRunning Slenium on '$JX_URL'\n\n\n"
+            sh "echo '\n\n\n===============\n\nRunning Selenium on $JX_URL\n\n\n'"
             sh "mvn verify -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=$JX_URL -P selenium-tests-only"
           }
         }
