@@ -31,14 +31,14 @@ pipeline {
            container('maven') {
              sh "make preview"
              sh "jx preview --app $APP_NAME --dir ../.."
-             sh 'export JX_URL=$(jx get preview --current)'
+                sh 'export JX_URL=$(jx get preview --current)'
+                sh "echo '\n\n\n===============\n\nRunning Selenium on $JX_URL\n\n\n'"
+                sh "mvn verify -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=$JX_URL -P selenium-tests-only"
+                sh "echo 'Done running selenium'"
            }
           }
 
-          container('maven') {
-            // sh "echo '\n\n\n===============\n\nRunning Selenium on $JX_URL\n\n\n'"
-            sh "mvn verify -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=$JX_URL -P selenium-tests-only"
-          }
+
         }
       }
       stage('Build Release') {
