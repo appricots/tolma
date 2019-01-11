@@ -35,6 +35,21 @@ pipeline {
           }
         }
       }
+      stage('Run Selenium Tests') {
+              when {
+                branch 'PR-*'
+              }
+
+              steps {
+
+                container('maven') {
+                      sh "echo '\n\n\n===============\n\nRunning Selenium on \$(jx get preview --current) in 30 seconds\n\n\n'"
+                      sh 'sleep 30'
+                      sh "mvn verify -Dgridnode.base.url=http://10.8.2.30:4444/wd/hub -Dwebdriver.base.url=\$(jx get preview --current) -P selenium-tests-only"
+                      sh "echo 'Done running selenium'"
+                 }
+              }
+      }
       stage('Build Release') {
         when {
           branch 'master'

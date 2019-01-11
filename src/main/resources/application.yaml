@@ -1,0 +1,9 @@
+logging:
+  level:
+      org.springframework.web: DEBUG
+      com.appricot: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info, health, env, liquibase"
